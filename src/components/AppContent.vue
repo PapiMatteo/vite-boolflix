@@ -20,7 +20,7 @@ export default {
             <h2>MOVIE</h2>
             <div class="row" v-if="store.moviesList.length > 0">
                 <div class="col" v-for="movie in store.moviesList" :key="movie.id">
-                    <AppCard :item="movie"/>
+                    <AppCard :item="movie" :imagePath="store.baseImagePath"/>
                 </div>
             </div>
             <h3 v-else>Cerca cosa guardare</h3>
@@ -29,7 +29,7 @@ export default {
             <h2>SERIES</h2>
             <div class="row">
                 <div class="col" v-for="series in store.seriesList">
-                    <AppCard :item="series"/>
+                    <AppCard :item="series" :imagePath="store.baseImagePath"/>
                 </div>
             </div>
         </div>
