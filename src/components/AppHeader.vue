@@ -1,6 +1,11 @@
 <script>
+import { store } from '../store';
 export default {
-
+    data() {
+        return {
+            store
+        }
+    }
 }
 </script>
 
@@ -9,8 +14,8 @@ export default {
         <div class="container flex">
             <h1>BOOLFLIX</h1>
             <div class="search-section">
-                <input type="text" name="" id="">
-                <button>CERCA</button>
+                <input type="text" v-model.trim="store.searchText">
+                <button @click="$emit('btn-click')">CERCA</button>
             </div>
             
         </div>
