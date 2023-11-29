@@ -1,7 +1,8 @@
 <script>
-import axios from 'axios'
-import AppHeader from './components/AppHeader.vue'
-import { store } from './store.js'
+import axios from 'axios';
+import AppHeader from './components/AppHeader.vue';
+import AppContent from './components/AppContent.vue';
+import { store } from './store.js';
 export default {
   data() {
     return {
@@ -9,7 +10,8 @@ export default {
     }
   },
   components: {
-    AppHeader
+    AppHeader,
+    AppContent
   },
   methods: {
     handleClick() {
@@ -22,8 +24,8 @@ export default {
           }
         })
         .then((resp) => {
-          this.store.moviesList = resp.data.results
-        })
+          this.store.moviesList = resp.data.results;
+        });
     }
   }
 }
@@ -31,6 +33,7 @@ export default {
 
 <template>
   <AppHeader @btn-click="handleClick"/>
+  <AppContent />
 </template>
 
 <style lang="scss">
