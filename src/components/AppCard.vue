@@ -30,6 +30,9 @@ export default {
                 originTitle = this.item.original_name;
             };
             return originTitle;
+        },
+        getRoundedVote() {
+            return Math.ceil(this.item.vote_average) / 2
         }
     }
 }
@@ -44,7 +47,7 @@ export default {
             <p>{{ getOriginalTitle() }}</p>
             <img class="flag" :src="getImagePath(item.original_language)" alt="" v-if="langImg.includes(item.original_language)">
             <p v-else>{{ item.original_language}}</p>
-            <p>{{ item.vote_average }}</p>
+            <p>{{ getRoundedVote() }}</p>
         </div>
        
     </div>
