@@ -6,12 +6,29 @@ export default {
         }
     },
     props: {
-        movie: Object
+        item: Object
     },
     methods: {
         getImagePath(img) {
-            console.log(img);
             return new URL(`../assets/img/${img}.jpg`, import.meta.url).href;
+        },
+        getTitle() {
+            let title = '';
+            if(this.item.title) {
+                title = this.item.title
+            }else {
+                title = this.item.name
+            }
+            return title
+        },
+        getOriginalTitle() {
+            let originTitle = '';
+            if (this.item.original_title) {
+                originTitle = this.item.original_title
+            } else {
+                originTitle = this.item.original_name
+            }
+            return originTitle
         }
     }
 }
@@ -19,11 +36,11 @@ export default {
 
 <template>
     <div class="card">
-        <h3>{{ movie.title }}</h3>
-        <p>{{ movie.original_title }}</p>
-        <img :src="getImagePath(movie.original_language)" alt="" v-if="langImg.includes(movie.original_language)">
-        <p v-else>{{ movie.original_language }}</p>
-        <p>{{ movie.vote_average }}</p>
+        <h3>{{ getTitle() }}</h3>
+        <p>{{ getOriginalTitle() }}</p>
+        <img class="flag" :src="getImagePath(item.original_language)" alt="" v-if="langImg.includes(item.original_language)">
+        <p v-else>{{ item.original_language}}</p>
+        <p>{{ item.vote_average }}</p>
     </div>
     
 </template>
@@ -32,7 +49,7 @@ export default {
 
 .card {
     margin-bottom: 1rem;
-    img {
+    .flag {
         width: 30px;
         height: 15px;
 

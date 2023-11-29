@@ -26,6 +26,17 @@ export default {
         .then((resp) => {
           this.store.moviesList = resp.data.results;
         });
+      
+      axios
+        .get(this.store.apiUrl + this.store.seriesSearch, {
+          params: {
+            query: this.store.searchText,
+            api_key: this.store.apiKey
+          }
+        })
+        .then((resp) => {
+          this.store.seriesList = resp.data.results;
+        })
     }
   }
 }
