@@ -1,5 +1,5 @@
 <script>
-import { store } from '../store';
+import { store } from '../store.js';
 export default {
     data() {
         return {
@@ -14,7 +14,7 @@ export default {
         <div class="container flex">
             <h1>BOOLFLIX</h1>
             <div class="search-section">
-                <input type="text" v-model.trim="store.searchText">
+                <input type="text" v-model.trim="store.searchText" @keyup.enter="$emit('btn-click')">
                 <button @click="$emit('btn-click')">CERCA</button>
             </div>
             

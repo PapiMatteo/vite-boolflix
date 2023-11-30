@@ -32,8 +32,16 @@ export default {
             return originTitle;
         },
         getRoundedVote() {
-            return Math.ceil(this.item.vote_average) / 2
-        }
+            return Math.ceil(this.item.vote_average / 2) 
+        },
+        // getFullStar() {
+        //     let starClass = '';
+        //     let vote = this.getRoundedVote();
+
+
+
+        //     getRoundedVote() > 0 && getRoundedVote() < 5 ? 'fa-solid': 'fa-regular'
+        // }
     }
 }
 </script>
@@ -47,7 +55,8 @@ export default {
             <p>{{ getOriginalTitle() }}</p>
             <img class="flag" :src="getImagePath(item.original_language)" alt="" v-if="langImg.includes(item.original_language)">
             <p v-else>{{ item.original_language}}</p>
-            <p>{{ getRoundedVote() }}</p>
+            <!-- <p>{{ getRoundedVote() }}</p> -->
+            <p><i v-for="i in 5" class="fa-star " :class="i <= getRoundedVote() ? 'fa-solid' : 'fa-regular'"></i></p>
         </div>
        
     </div>
@@ -55,12 +64,22 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-// 342 513
 .card {
     margin-bottom: 1rem;
+    
+    .text-content {
+        color: white;
+    }
+
+    img{
+        height: 450px;
+        width: 342px;
+        border: 1px solid white;
+        border-radius: 10px;
+    }
 
     .not-found-img {
-        height: 513px;
+        // height: 513px;
         width: 342px;
     }
     .flag {
