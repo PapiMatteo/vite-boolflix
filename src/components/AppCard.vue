@@ -33,15 +33,7 @@ export default {
         },
         getRoundedVote() {
             return Math.ceil(this.item.vote_average / 2) 
-        },
-        // getFullStar() {
-        //     let starClass = '';
-        //     let vote = this.getRoundedVote();
-
-
-
-        //     getRoundedVote() > 0 && getRoundedVote() < 5 ? 'fa-solid': 'fa-regular'
-        // }
+        }
     }
 }
 </script>
@@ -51,12 +43,12 @@ export default {
         <img v-if="item.poster_path" :src="`${imagePath}${item.poster_path}`" alt="">
         <img class="not-found-img" v-else src="https://lightwidget.com/wp-content/uploads/localhost-file-not-found-480x480.avif" alt="">
         <div class="text-content">
-            <h3>{{ getTitle() }}</h3>
-            <p>{{ getOriginalTitle() }}</p>
+            <h2>{{ getTitle() }}</h2>
+            <h3>{{ getOriginalTitle() }}</h3>
             <img class="flag" :src="getImagePath(item.original_language)" alt="" v-if="langImg.includes(item.original_language)">
             <p v-else>{{ item.original_language}}</p>
-            <!-- <p>{{ getRoundedVote() }}</p> -->
             <p><i v-for="i in 5" class="fa-star " :class="i <= getRoundedVote() ? 'fa-solid' : 'fa-regular'"></i></p>
+            <p class="overview"><strong>Overview:</strong> {{ item.overview }}</p>
         </div>
        
     </div>
@@ -66,25 +58,48 @@ export default {
 <style lang="scss" scoped>
 .card {
     margin-bottom: 1rem;
+    position: relative;
+    border-radius: 10px;
+    border: 1px solid white;
+    width: 100%;
+    overflow-y: auto;
     
     .text-content {
         color: white;
+        position: absolute;
+        top: 60px;
+        left: 20px;
+        display: none;
+
+        .overview {
+            padding-top: 20px;
+            margin-bottom: 30px;
+        }
     }
 
     img{
         height: 450px;
-        width: 342px;
-        border: 1px solid white;
+        width: 100%;
+        display: block;
         border-radius: 10px;
     }
 
-    .not-found-img {
-        // height: 513px;
-        width: 342px;
+    .not-found-img { 
+        width: 100%;
     }
     .flag {
         width: 30px;
         height: 15px;
+    }
+
+    &:hover {
+        img {
+            opacity: 20%;
+            filter: blur(8px);
+        }
+        .text-content {
+            display: block;
+        }
     }
 }
 
