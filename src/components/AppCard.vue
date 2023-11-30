@@ -93,6 +93,10 @@ export default {
     }
 
     &:hover {
+        .flag {
+            opacity: 100%;
+            filter: none;
+        }
         img {
             opacity: 20%;
             filter: blur(8px);
