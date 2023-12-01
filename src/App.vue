@@ -43,8 +43,13 @@ export default {
 </script>
 
 <template>
-  <AppHeader @btn-click="handleClick"/>
-  <AppContent />
+  
+  <div class="wrapper"> 
+    <AppHeader @btn-click="handleClick"/>
+    <h2 v-if="store.moviesList.length == 0 || store.seriesList.length == 0">INIZIA LA TUA RICERCA DI FILM O SERIE TV</h2>
+    <AppContent v-else/>
+  </div>
+  
 </template>
 
 <style lang="scss">

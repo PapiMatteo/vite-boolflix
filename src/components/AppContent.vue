@@ -8,20 +8,20 @@ export default {
         }
     },
     components: {
-        AppCard 
+        AppCard
     }
 
 }
 </script>
 
 <template>
-    <h2 v-if="store.moviesList.length == 0 || store.seriesList.length == 0">INIZIA LA TUA RICERCA DI FILM O SERIE TV</h2>
-    <div class="container" v-else>
+   
+    <div class="container">
         <div class="movie">
             <h2>MOVIE</h2>
             <div class="row">
                 <div class="col" v-for="movie in store.moviesList" :key="movie.id">
-                    <AppCard :item="movie" :imagePath="store.baseImagePath"/>
+                    <AppCard :item="movie" :imagePath="store.baseImagePath" />
                 </div>
             </div>
         </div>
@@ -29,21 +29,22 @@ export default {
             <h2>SERIES</h2>
             <div class="row">
                 <div class="col" v-for="series in store.seriesList">
-                    <AppCard :item="series" :imagePath="store.baseImagePath"/>
+                    <AppCard :item="series" :imagePath="store.baseImagePath" />
                 </div>
             </div>
         </div>
     </div>
-
 </template>
 
 <style lang="scss" scoped>
 
-h2 {
-    text-align: center;
-    margin: 3rem 0;
-    color: red;
+
+.container {
+    height: calc(100% - 90px);
+    overflow-y: auto;
 }
+
+
 
 .row {
     display: flex;
@@ -56,5 +57,4 @@ h2 {
         width: 342px;
     }
 }
-
 </style>
